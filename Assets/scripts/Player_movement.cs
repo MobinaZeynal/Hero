@@ -7,7 +7,9 @@ public class Player_movement : MonoBehaviour
     public Transform transform;
     public float speed = 1.5f;
 
-        public float rotationSpeed = 5f;
+    public float rotationSpeed = 5f;
+
+    public score_manager score_Value;
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +42,16 @@ public class Player_movement : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision){
-     Time.timeScale = 0;
-     Debug.Log("Barkhord!!");
+        if (collision.gameObject.tag == "enemy"){
+         Time.timeScale = 0;
+         Debug.Log("Barkhord!!");
+        }
+        if(collision.gameObject.tag == "Key")
+        score_Value.score +=5 ;
+        Destroy(collision.gameObject);
     }
+
+    
+
+
 }
